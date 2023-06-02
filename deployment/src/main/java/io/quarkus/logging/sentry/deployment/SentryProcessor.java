@@ -11,7 +11,7 @@ import io.quarkus.logging.sentry.SentryHandlerValueFactory;
 
 class SentryProcessor {
 
-    private static final String FEATURE = "logging-sentry";
+    private static final String FEATURE = "logging-sentry-legacy";
 
     @BuildStep
     FeatureBuildItem feature() {
