@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.quarkiverse.loggingsentry</groupId>
-        <artifactId>quarkus-logging-sentry-parent</artifactId>
-        <version>999-SNAPSHOT</version>
+        <artifactId>quarkus-logging-sentry-legacy-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>quarkus-logging-sentry</artifactId>
+    <artifactId>quarkus-logging-sentry-legacy</artifactId>
     <name>Quarkus - Logging - Sentry - Runtime</name>
     <description>Use Sentry, a self-hosted or cloud-based error monitoring solution</description>
 
@@ -17,7 +17,7 @@
         </dependency>
         <dependency>
             <groupId>io.sentry</groupId>
-            <artifactId>sentry-jul</artifactId>
+            <artifactId>sentry</artifactId>
         </dependency>
     </dependencies>
     <build>

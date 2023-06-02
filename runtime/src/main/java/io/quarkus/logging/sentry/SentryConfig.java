@@ -2,7 +2,6 @@ package io.quarkus.logging.sentry;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalDouble;
 import java.util.logging.Level;
 
 import io.quarkus.runtime.annotations.ConfigItem;
@@ -37,23 +36,6 @@ public class SentryConfig {
     public Level level;
 
     /**
-     * The minimum event level.
-     *
-     * Every log statement that is greater than minimum event level is turned into Sentry event.
-     */
-    @ConfigItem(defaultValue = "WARN")
-    public Level minimumEventLevel;
-
-    /**
-     * The minimum breadcrumb level.
-     *
-     * Every log statement that is greater than minimum breadcrumb level is added to Sentry scope as a breadcrumb,
-     * which can be later attached to SentryEvent if one is triggered.
-     */
-    @ConfigItem(defaultValue = "INFO")
-    public Level minimumBreadcrumbLevel;
-
-    /**
      * Sentry differentiates stack frames that are directly related to your application (“in application”) from stack frames
      * that come from other packages such as the standard library, frameworks, or other dependencies. The difference is visible
      * in the Sentry web interface where only the “in application” frames are displayed by default.
@@ -69,7 +51,7 @@ public class SentryConfig {
     /**
      * Environment
      *
-     * With Sentry you can easily filter issues, releases, and user feedback by environment.
+     * As of Sentry 9, you can easily filter issues, releases, and user feedback by environment.
      * The environment filter on sentry affects all issue-related metrics like count of users affected, times series graphs,
      * and event count.
      * By setting the environment option, an environment tag will be added to each new issue sent to Sentry.
@@ -77,6 +59,8 @@ public class SentryConfig {
      * There are a few restrictions:
      * -> the environment name cannot contain newlines or spaces, cannot be the string “None” or exceed 64 characters.
      *
+     * For further detail, please refer to the sentry environment option documentation:
+     * https://docs.sentry.io/enriching-error-data/environments/
      */
     @ConfigItem
     public Optional<String> environment;
@@ -91,34 +75,10 @@ public class SentryConfig {
      * - Resolve issues by including the issue number in your commit message
      * - Receive email notifications when your code gets deployed
      *
+     * For further detail, please refer to the sentry release option documentation:
+     * https://docs.sentry.io/workflow/releases/
      */
     @ConfigItem
     public Optional<String> release;
 
-    /**
-     * Server name
-     *
-     * Sets the server name that will be sent with each event.
-     */
-    @ConfigItem
-    public Optional<String> serverName;
-
-    /**
-     * Debug
-     *
-     * Enables Sentry debug mode.
-     */
-    @ConfigItem(defaultValue = "false")
-    public boolean debug;
-
-    /**
-     * This should be a float/double between 0.0 and 1.0 (inclusive) and represents the percentage chance that any given
-     * transaction will be sent to Sentry.
-     * So, barring outside influence, 0.0 is a 0% chance (none will be sent) and 1.0 is a 100% chance (all will be sent). This
-     * rate applies equally to all transactions.
-     */
-    @ConfigItem()
-    public OptionalDouble tracesSampleRate;
-
-    public SentryProxyConfig proxy;
 }
