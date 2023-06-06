@@ -1,0 +1,19 @@
+
+variables:
+  GIT_SSL_NO_VERIFY: "true"
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+stages:
+- Build
+
+.imagem_maven: &imagem_maven
+  image: hub.estaleiro.serpro/pipeline/maven:3-jdk-11-slim
+
+Build & Nexus:
+  <<: *imagem_maven
+  stage: Build
+  cache:
+    paths:
+      - .m2
+  script:
+    - mvn -s settings.xml clean javadoc:jar source:jar deploy

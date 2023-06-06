@@ -15,6 +15,31 @@
         <module>deployment</module>
         <module>runtime</module>
     </modules>
+    
+	<repositories>
+		<repository>
+			<id>nexus-serpro</id>
+			<name>nexus-serpro</name>
+			<url>https://nexus.aic.serpro.gov.br/repository/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>nexus</id>
+			<name>releases</name>
+			<url>https://nexus.aic.serpro.gov.br/repository/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshot</id>
+			<name>snapshots</name>
+			<url>https://nexus.aic.serpro.gov.br/repository/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+    
     <properties>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
